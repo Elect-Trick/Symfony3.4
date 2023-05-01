@@ -1,14 +1,28 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<div>
-<h1> I am here {{name}}</h1>
-<h1> I Love you {{name}}</h1>
-<h1> I Care for you {{name}}</h1>
+{{ form_start(form) }}
+{{ form_widget(form.search) }}
+<button type='submit' >Submit</button>
 
 
-<label>Woah </label>
+{{ form_errors(form.search) }}
 
+{{ form_end(form)}}
 
- {{name}} Self care is a key component, take care of your self. Mentally and
-</div>
+<table>
+<tr> 
+<th>Make</th>
+<th>Name</th>
+</tr>
+
+{% for car in cars %}
+
+<tr> 
+<td> {{car.make.name}} </td>
+<td> {{car.model.name}} </td>
+</tr>
+
+{% endfor %}
+</table>
+
 {% endblock body %}
