@@ -1,0 +1,597 @@
+<?php
+
+namespace OrdersBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Orders
+ *
+ * @ORM\Table(name="orders")
+ * @ORM\Entity(repositoryClass="OrdersBundle\Repository\OrdersRepository")
+ */
+class Orders
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var int
+     * @ORM\OneToOne(targetEntity="OrdersBundles\Entity\Mdu_Locations")
+     * @ORM\JoinColumn(name="location", referencedColumnName="location_id")
+     * @ORM\Column(unique=false)
+     * 
+     */
+    private $locationId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="location_type", type="string", length=50)
+     */
+    private $locationType;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="client_name", type="string", length=255)
+     */
+    private $clientName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="client_surname", type="string", length=255)
+     */
+    private $clientSurname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="client_email", type="string", length=255)
+     */
+    private $clientEmail;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="client_contact_number", type="string", length=255)
+     */
+    private $clientContactNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="client_id_number", type="string", length=255)
+     */
+    private $clientIdNumber;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="order_type", type="integer")
+     */
+    private $orderType;
+
+      /**
+     * @var Products
+     *
+     * @ORM\OneToOne(targetEntity="OrdersBundle\Entity\Products" )
+     * @ORM\JoinColumn(name="product", referencedColumnName="product_id")
+     * @ORM\Column(unique=false)
+     */
+    private $product;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="isp_reference", type="string", length=255)
+     */
+    private $ispReference;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="order_status", type="integer")
+     */
+    private $orderStatus;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="organization_id", type="integer")
+     */
+    private $organizationId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="order_number", type="string", length=255)
+     */
+    private $orderNumber;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="creation_date", type="datetime", nullable=true)
+     */
+    private $creationDate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="network_id", type="string", length=255, nullable=true)
+     */
+    private $networkId;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="technician_id", type="integer")
+     */
+    private $technicianId;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="order_fulfilled", type="boolean")
+     */
+    private $orderFulfilled;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="scheduled_date", type="datetime", nullable=true)
+     */
+    private $scheduledDate;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set locationId
+     *
+     * @param integer $locationId
+     *
+     * @return Orders
+     */
+    public function setLocationId($locationId)
+    {
+        $this->locationId = $locationId;
+
+        return $this;
+    }
+
+    /**
+     * Get locationId
+     *
+     * @return int
+     */
+    public function getLocationId()
+    {
+        return $this->locationId;
+    }
+
+    /**
+     * Set locationType
+     *
+     * @param string $locationType
+     *
+     * @return Orders
+     */
+    public function setLocationType($locationType)
+    {
+        $this->locationType = $locationType;
+
+        return $this;
+    }
+
+    /**
+     * Get locationType
+     *
+     * @return string
+     */
+    public function getLocationType()
+    {
+        return $this->locationType;
+    }
+
+    /**
+     * Set clientName
+     *
+     * @param string $clientName
+     *
+     * @return Orders
+     */
+    public function setClientName($clientName)
+    {
+        $this->clientName = $clientName;
+
+        return $this;
+    }
+
+    /**
+     * Get clientName
+     *
+     * @return string
+     */
+    public function getClientName()
+    {
+        return $this->clientName;
+    }
+
+    /**
+     * Set clientSurname
+     *
+     * @param string $clientSurname
+     *
+     * @return Orders
+     */
+    public function setClientSurname($clientSurname)
+    {
+        $this->clientSurname = $clientSurname;
+
+        return $this;
+    }
+
+    /**
+     * Get clientSurname
+     *
+     * @return string
+     */
+    public function getClientSurname()
+    {
+        return $this->clientSurname;
+    }
+
+    /**
+     * Set clientEmail
+     *
+     * @param string $clientEmail
+     *
+     * @return Orders
+     */
+    public function setClientEmail($clientEmail)
+    {
+        $this->clientEmail = $clientEmail;
+
+        return $this;
+    }
+
+    /**
+     * Get clientEmail
+     *
+     * @return string
+     */
+    public function getClientEmail()
+    {
+        return $this->clientEmail;
+    }
+
+    /**
+     * Set clientContactNumber
+     *
+     * @param string $clientContactNumber
+     *
+     * @return Orders
+     */
+    public function setClientContactNumber($clientContactNumber)
+    {
+        $this->clientContactNumber = $clientContactNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get clientContactNumber
+     *
+     * @return string
+     */
+    public function getClientContactNumber()
+    {
+        return $this->clientContactNumber;
+    }
+
+    /**
+     * Set clientIdNumber
+     *
+     * @param string $clientIdNumber
+     *
+     * @return Orders
+     */
+    public function setClientIdNumber($clientIdNumber)
+    {
+        $this->clientIdNumber = $clientIdNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get clientIdNumber
+     *
+     * @return string
+     */
+    public function getClientIdNumber()
+    {
+        return $this->clientIdNumber;
+    }
+
+    /**
+     * Set orderType
+     *
+     * @param integer $orderType
+     *
+     * @return Orders
+     */
+    public function setOrderType($orderType)
+    {
+        $this->orderType = $orderType;
+
+        return $this;
+    }
+
+    /**
+     * Get orderType
+     *
+     * @return int
+     */
+    public function getOrderType()
+    {
+        return $this->orderType;
+    }
+
+    /**
+     * Set product
+     *
+     * @param integer $product
+     *
+     * @return Orders
+     */
+    public function setProduct($product)
+    {
+        $this->product = $product;
+
+        return $this;
+    }
+
+    /**
+     * Get product
+     *
+     * @return int
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    /**
+     * Set ispReference
+     *
+     * @param string $ispReference
+     *
+     * @return Orders
+     */
+    public function setIspReference($ispReference)
+    {
+        $this->ispReference = $ispReference;
+
+        return $this;
+    }
+
+    /**
+     * Get ispReference
+     *
+     * @return string
+     */
+    public function getIspReference()
+    {
+        return $this->ispReference;
+    }
+
+    /**
+     * Set orderStatus
+     *
+     * @param integer $orderStatus
+     *
+     * @return Orders
+     */
+    public function setOrderStatus($orderStatus)
+    {
+        $this->orderStatus = $orderStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get orderStatus
+     *
+     * @return int
+     */
+    public function getOrderStatus()
+    {
+        return $this->orderStatus;
+    }
+
+    /**
+     * Set organizationId
+     *
+     * @param integer $organizationId
+     *
+     * @return Orders
+     */
+    public function setOrganizationId($organizationId)
+    {
+        $this->organizationId = $organizationId;
+
+        return $this;
+    }
+
+    /**
+     * Get organizationId
+     *
+     * @return int
+     */
+    public function getOrganizationId()
+    {
+        return $this->organizationId;
+    }
+
+    /**
+     * Set orderNumber
+     *
+     * @param string $orderNumber
+     *
+     * @return Orders
+     */
+    public function setOrderNumber($orderNumber)
+    {
+        $this->orderNumber = $orderNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get orderNumber
+     *
+     * @return string
+     */
+    public function getOrderNumber()
+    {
+        return $this->orderNumber;
+    }
+
+    /**
+     * Set creationDate
+     *
+     * @param \DateTime $creationDate
+     *
+     * @return Orders
+     */
+    public function setCreationDate($creationDate)
+    {
+        $this->creationDate = $creationDate;
+
+        return $this;
+    }
+
+    /**
+     * Get creationDate
+     *
+     * @return \DateTime
+     */
+    public function getCreationDate()
+    {
+        return $this->creationDate;
+    }
+
+    /**
+     * Set networkId
+     *
+     * @param string $networkId
+     *
+     * @return Orders
+     */
+    public function setNetworkId($networkId)
+    {
+        $this->networkId = $networkId;
+
+        return $this;
+    }
+
+    /**
+     * Get networkId
+     *
+     * @return string
+     */
+    public function getNetworkId()
+    {
+        return $this->networkId;
+    }
+
+    /**
+     * Set technicianId
+     *
+     * @param integer $technicianId
+     *
+     * @return Orders
+     */
+    public function setTechnicianId($technicianId)
+    {
+        $this->technicianId = $technicianId;
+
+        return $this;
+    }
+
+    /**
+     * Get technicianId
+     *
+     * @return int
+     */
+    public function getTechnicianId()
+    {
+        return $this->technicianId;
+    }
+
+    /**
+     * Set orderFulfilled
+     *
+     * @param boolean $orderFulfilled
+     *
+     * @return Orders
+     */
+    public function setOrderFulfilled($orderFulfilled)
+    {
+        $this->orderFulfilled = $orderFulfilled;
+
+        return $this;
+    }
+
+    /**
+     * Get orderFulfilled
+     *
+     * @return bool
+     */
+    public function getOrderFulfilled()
+    {
+        return $this->orderFulfilled;
+    }
+
+    /**
+     * Set scheduledDate
+     *
+     * @param \DateTime $scheduledDate
+     *
+     * @return Orders
+     */
+    public function setScheduledDate($scheduledDate)
+    {
+        $this->scheduledDate = $scheduledDate;
+
+        return $this;
+    }
+
+    /**
+     * Get scheduledDate
+     *
+     * @return \DateTime
+     */
+    public function getScheduledDate()
+    {
+        return $this->scheduledDate;
+    }
+}
+

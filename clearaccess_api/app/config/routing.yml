@@ -1,0 +1,28 @@
+services:
+    resource: "@ServicesBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+outages:
+    resource: "@OutagesBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+jwt:
+    resource: "@JwtBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+orders:
+    resource: "@OrdersBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+user:
+    resource: "@UserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation

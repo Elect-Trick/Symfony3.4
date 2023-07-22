@@ -2,12 +2,21 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: "@CarBundle/Resources/config/services.yml" }
+    - { resource: nelmio_cors.yml }
+    - { resource: lexik_jwt_authentication.yml }
+
+    - { resource: "@UserBundle/Resources/config/services.yml" }
+    - { resource: "@OrdersBundle/Resources/config/services.yml" }
+    - { resource: "@JwtBundle/Resources/config/services.yml" }
+    - { resource: "@OutagesBundle/Resources/config/services.yml" }
+    - { resource: "@ServicesBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+
+
 
 framework:
     #esi: ~
@@ -36,8 +45,6 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
-    form_themes: 
-    -   'bootstrap_3_layout.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -60,6 +67,16 @@ doctrine:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        # entity_managers:
+        #     orders:
+        #         connection: default
+        #         mappings:
+        #             SduLocations:
+        #                 is_bundle: false
+        #                 type: annotation
+        #                 dir: '%kernel.project_dir%/src/Entity'
+        #                 prefix: '../../src/OrdersBundle/Entity/'
+        #                 alias: SduLocations
         
 
 # Swiftmailer Configuration

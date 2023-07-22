@@ -4,6 +4,9 @@ security:
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
+        users:
+            entity:
+                class:  '/clearaccess_api/src/UserBundle/Entity/User'
         in_memory:
             memory: ~
 
