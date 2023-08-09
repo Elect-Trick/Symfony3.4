@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  auto:
+    image: auto
+    volumes:
+      - data:/var/www/html
+    environment:
+      - DATABASE_HOST=host.docker.internal
+      - DATABASE_PORT=3306
+      - DATABASE_NAME=auto_trader
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=''
+      - SECRET=ThisTokenIsNotSoSecretChangeIt=value
+volumes:
+  data:
+
+
+
+
+
+    
+
