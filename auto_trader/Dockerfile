@@ -22,7 +22,7 @@ RUN apt-get update && \
 COPY . .
 
 # Install Symfony dependencies using composer
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --optimize-autoloader
 # Install Apache
 RUN apt-get update &&  apt-get install -y apache2
 
@@ -34,12 +34,12 @@ RUN rm /etc/apache2/sites-available/000-default.conf
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-ENV DATABASE_HOST=host.docker.internal
-ENV DATABASE_PORT=3306
-ENV DATABASE_NAME=auto_trader
-ENV DATABASE_USER=root
-ENV DATABASE_PASSWORD=''
-ENV SECRET=ThisTokenIsNotSoSecretChangeIt
+# ENV DATABASE_HOST=host.docker.internal
+# ENV DATABASE_PORT=3306
+# ENV DATABASE_NAME=auto_trader
+# ENV DATABASE_USER=root
+# ENV DATABASE_PASSWORD=''
+# ENV SECRET=ThisTokenIsNotSoSecretChangeIt
 
 
 # Expose the port that Symfony will run on (adjust if necessary)
@@ -52,6 +52,4 @@ CMD ["supervisord", "-n"]
 
 
 
-# CMD bash -c "php bin/console doctrine:database:create --if-not-exists \
-#      && php bin/console doctrine:schema:update --force \
-#      && php bin/console server:run 0.0.0.0:8000"
+# CMD bash -c "php bin/console server:run"
